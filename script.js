@@ -21,20 +21,92 @@ generatePwd.addEventListener('click', () => {
     }
 
     let passwordCharacters = '';
-    if (includeUppercase) passwordCharacters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (includeLowercase) passwordCharacters += 'abcdefghijklmnopqrstuvwxyz';
-    if (includeNumber) passwordCharacters += '0123456789';
-    if (includeSymbol) passwordCharacters += '@$!%*?&';
+    let upperCase = '';
+    let lowerCase = '';
+    let numValues = '';
+    let symValues = '';
+    if (includeUppercase) 
+        upperCase += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeLowercase) 
+        lowerCase += 'abcdefghijklmnopqrstuvwxyz';
+    if (includeNumber) 
+        numValues += '0123456789';
+    if (includeSymbol) 
+        symValues += '@$!%*?&';
+// Generating the required set of characters as a string of length 100.
+let ups = upperCase.length - 1;
+let lows = lowerCase.length - 1;
+let nums = numValues.length - 1;
+let symbs = symValues.length - 1;
+while(passwordCharacters.length < 200) {            
+    // the elegible chars are jumbled with some repetitions to form a string of 200 chars, from which new pwd will be generated.
+    if (upperCase.length > 0) {                     
+        // checks if upperCase is to be included in password generation
+        if (ups < 0) ups = upperCase.length - 1;    
+        // checks if all uppercase chars are traversed, and resets the iterations if necessary
+        passwordCharacters += upperCase[ups--];     
+        // adds the currently pointed uppercase char to the string of elegible chars for pwd gen.
+    } 
+    if (lowerCase.length > 0) {
+        if (lows < 0) lows = lowerCase.length - 1;
+        passwordCharacters += lowerCase[lows--];
+    } 
+    if (numValues.length > 0) {
+        if (nums < 0) nums = numValues.length - 1;
+        passwordCharacters += numValues[nums--];
+    }
+    if (symValues.length > 0) {
+        if (symbs < 0) symbs = symValues.length - 1;
+        passwordCharacters += symValues[symbs--];
+    }
+}
 
     if (passwordCharacters.length === 0) {
         alert("Please select at least one character type.");
-        return;
+        return;   // Breaks the event function from executing further
     }
-
+// let len = passwordCharacters.length;
     let generatedPassword = '';
+    
     for (let i = 0; i < setPasswordLength; i++) {
         const randomIndex = Math.floor(Math.random() * passwordCharacters.length);
         generatedPassword += passwordCharacters[randomIndex];
+        // if (takenOne === false) {
+        // const randomIndex = Math.floor(Math.random() * takeFirstLength);
+        
+        // takenOne = true;
+        // takenTwo = true;
+        // // takenThree = false;
+        // takenFour = false;
+        // continue;
+        // }
+        // if (takenTwo === false) {
+        // const randomIndex = Math.floor(Math.random() * (takeSecondLength - takeFirstLength) + takeFirstLength);
+        // generatedPassword += passwordCharacters[randomIndex];
+        // takenOne = true;
+        // takenTwo = true;
+        // takenThree = true;
+        // takenFour = false;
+        // continue;
+        // }
+        // if (takenThree === false) {
+        // const randomIndex = Math.floor(Math.random() * (takeThirdLength - takeSecondLength) + takeSecondLength);
+        // generatedPassword += passwordCharacters[randomIndex];
+        // // takenOne = false;
+        // takenTwo = false;
+        // takenThree = true;
+        // takenFour = true;
+        // continue;
+        // }
+        // if (takenTwo === false) {
+        // const randomIndex = Math.floor(Math.random() * ((len - 1) - takeThirdLength) + takeThirdLength);
+        // generatedPassword += passwordCharacters[randomIndex];
+        // takenOne = true;
+        // takenTwo = true;
+        // takenThree = true;
+        // takenFour = false;
+        // continue;
+        // }
     }
 
     getPwd.textContent = generatedPassword; 
