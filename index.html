@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link href="./dist/output.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 flex justify-center p-4">
+<!-- Container of Password Generator -->
+    <div id="pwd-container" class="border-2 bg-red-800 min-h-32 min-w-48 max-w-96 mt-12 shadow-[0_0_24px_8px_rgba(150,150,150,0.45)] rounded-md p-4">
+<!-- title -->
+        <div class="text-center text-2xl font-extrabold text-slate-50 px-10 py-4">Password Generator</div>
+
+<!-- output panel -->
+        <div class="flex justify-between border text-xl font-bold px-3 py-3 bg-slate-700 text-green-400 text-left m-1">
+            <p id="generated-password" class="opacity-50">Password Generator</p>
+<!-- copy password : link -->
+            <button id="pwd-copy" class="pl-4 text-gray-50 hover:text-lime-200 hover:cursor-pointer"><i class="fa-solid fa-copy"></i></button>
+        </div>
+
+<!-- Get Password Length -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-between">
+            Password Length
+            <input id="pwd-length" type="number" maxlength="2" max="10" min="4" class="bg-slate-100 text-slate-950 max-w-12 px-1">
+        </div>
+
+<!-- Option to include upper case (checkbox) -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-between">
+            Include uppercase letters
+            <input type="checkbox" id="inc-uppercase" class="bg-slate-100 text-slate-950 max-w-12 p-4">
+        </div>
+<!-- Option to include lower case (checkbox) -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-between">
+            Include lowercase letters
+            <input type="checkbox" id="inc-lowercase" class="bg-slate-100 text-slate-950 max-w-12 p-4">
+        </div>
+<!-- Option to include Numbers (checkbox) -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-between">
+            Include Numbers
+            <input type="checkbox" id="inc-numbers" class="bg-slate-100 text-slate-950 max-w-12 p-4">
+        </div>
+<!-- Option to include Symbols (checkbox) -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-between">
+            Include Symbols
+            <input type="checkbox" id="inc-symbols" class="bg-slate-100 text-slate-950 max-w-12 p-4">
+        </div>
+<!-- Generate Password -->
+        <div class="my-4 text-lg font-semibold text-green-50 flex justify-center">
+            <button id="generate-the-password" class="bg-slate-100 text-slate-950 w-5/6 m-2 mb-0 p-2 text-xl hover:cursor-pointer hover:bg-amber-300"> 
+                Generate Password
+            </button>
+        </div>
+    </div>
+<script src="https://kit.fontawesome.com/d314a677b2.js" crossorigin="anonymous"></script>
+<script src="./script.js">
+</script>
+</body>
+</html>
