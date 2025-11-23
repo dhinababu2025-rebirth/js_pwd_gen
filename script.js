@@ -9,6 +9,18 @@ let generatePwd = document.getElementById("generate-the-password"); //button for
 
 
 generatePwd.addEventListener('click', () => {
+
+    // button animation with tailwind classes
+        generatePwd.classList.remove("bg-slate-100") // cant add another bg while there is an existing bg as inline class
+        generatePwd.classList.remove("hover:bg-amber-300") // cant add another bg while there is an existing bg as inline class
+
+        generatePwd.classList.add("bg-green-300");
+        setTimeout(() => {
+            generatePwd.classList.remove("bg-green-300");
+            generatePwd.classList.add("bg-slate-100");
+            generatePwd.classList.add("hover:bg-amber-300")
+        },200);
+
     let includeUppercase = includeUC.checked;
     let includeLowercase = includeLC.checked;
     let includeNumber = includeNum.checked;
@@ -18,6 +30,10 @@ generatePwd.addEventListener('click', () => {
     if(setPasswordLength < 4 || setPasswordLength > 10) {
         alert("Please enter a password length in the range of 4 to 10 characters only.")
         return;
+    }
+    if (!(includeUppercase || includeLowercase || includeSymbol || includeNumber)) {
+        alert("Please select at least one character type.");
+        return;   // Breaks the event function from executing further
     }
 
     let passwordCharacters = '';
@@ -61,10 +77,7 @@ while(passwordCharacters.length < 200) {
     }
 }
 
-    if (passwordCharacters.length === 0) {
-        alert("Please select at least one character type.");
-        return;   // Breaks the event function from executing further
-    }
+    
 // let len = passwordCharacters.length;
     let generatedPassword = '';
     
@@ -110,6 +123,7 @@ while(passwordCharacters.length < 200) {
     }
 
     getPwd.textContent = generatedPassword; 
+    getPwd.classList.remove("opacity-50");
 });
 
 // copyPassword.addEventListener('click', () => {
@@ -121,5 +135,16 @@ while(passwordCharacters.length < 200) {
 
 copyPassword.addEventListener('click', () => {
     navigator.clipboard.writeText(getPwd.textContent);
-    alert("Password Copied");
+     // button animation for copy link
+        copyPassword.classList.remove("text-gray-50") // cant add another bg while there is an existing bg as inline class
+        copyPassword.classList.remove("hover:text-lime-200") // cant add another bg while there is an existing bg as inline class
+
+        copyPassword.classList.add("text-green-400");
+        setTimeout(() => {
+            copyPassword.classList.remove("text-green-400");
+            copyPassword.classList.add("text-gray-50");
+            copyPassword.classList.add("hover:text-lime-200");
+            alert("Password Copied");
+        },500);
+
 });
