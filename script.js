@@ -7,10 +7,10 @@ let includeNum = document.getElementById("inc-numbers");           //checkbox fo
 let includeSym = document.getElementById("inc-symbols");           //checkbox for including symbols in the password
 let generatePwd = document.getElementById("generate-the-password"); //button for Generating New Password
 
-
+let passwordCharacters = '';    // to be used in both events
 generatePwd.addEventListener('click', () => {
 
-    // button animation with tailwind classes
+    // button animation "Generate Password" with tailwind classes
         generatePwd.classList.remove("bg-slate-100") // cant add another bg while there is an existing bg as inline class
         generatePwd.classList.remove("hover:bg-amber-300") // cant add another bg while there is an existing bg as inline class
 
@@ -36,7 +36,7 @@ generatePwd.addEventListener('click', () => {
         return;   // Breaks the event function from executing further
     }
 
-    let passwordCharacters = '';
+    passwordCharacters = '';  // reset the char set of string
     let upperCase = '';
     let lowerCase = '';
     let numValues = '';
@@ -49,7 +49,7 @@ generatePwd.addEventListener('click', () => {
         numValues += '0123456789';
     if (includeSymbol) 
         symValues += '@$!%*?&';
-// Generating the required set of characters as a string of length 100.
+// Generating the required set of characters as a string of length 200.
 let ups = upperCase.length - 1;
 let lows = lowerCase.length - 1;
 let nums = numValues.length - 1;
@@ -123,7 +123,7 @@ while(passwordCharacters.length < 200) {
     }
 
     getPwd.textContent = generatedPassword; 
-    getPwd.classList.remove("opacity-50");
+    getPwd.classList.remove("opacity-50"); // to restore the brighter text color set in html-tailwind
 });
 
 // copyPassword.addEventListener('click', () => {
@@ -134,6 +134,12 @@ while(passwordCharacters.length < 200) {
 // });
 
 copyPassword.addEventListener('click', () => {
+
+    if (passwordCharacters === '') {
+        alert("You havn't generated the password yet!");
+        return;
+    }
+
     navigator.clipboard.writeText(getPwd.textContent);
      // button animation for copy link
         copyPassword.classList.remove("text-gray-50") // cant add another bg while there is an existing bg as inline class
@@ -144,7 +150,7 @@ copyPassword.addEventListener('click', () => {
             copyPassword.classList.remove("text-green-400");
             copyPassword.classList.add("text-gray-50");
             copyPassword.classList.add("hover:text-lime-200");
-            alert("Password Copied");
+            alert("Password Copied to clipboard successfully");
         },500);
 
 });
