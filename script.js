@@ -25,10 +25,10 @@ generatePwd.addEventListener('click', () => {
     let includeLowercase = includeLC.checked;
     let includeNumber = includeNum.checked;
     let includeSymbol = includeSym.checked;
-    let setPasswordLength = parseInt(setPwdLength.value, 10);
+    let setPasswordLength = parseInt(setPwdLength.value, 10) || 0; // 0 is set as default value
 
-    if(setPasswordLength < 4 || setPasswordLength > 10) {
-        alert("Please enter a password length in the range of 4 to 10 characters only.")
+    if(setPasswordLength < 4 || setPasswordLength > 10 || setPasswordLength == 0) {
+        alert("Please enter a password length in the range of 4 to 10 characters.")
         return;
     }
     if (!(includeUppercase || includeLowercase || includeSymbol || includeNumber)) {
